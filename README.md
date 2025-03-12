@@ -154,14 +154,15 @@ Results are presented as follows.
 ![All obfuscations LCS with different K Len](https://github.com/wbieniec/controlled-plag-check/charts/lcs_all.png)
 
 
-[preprocess.py]: https://github.com/wbieniec/controlled-plag-check/preprocess.py 
-[config.json]: https://github.com/wbieniec/controlled-plag-check/config.json
-[results.xlsx]: https://github.com/wbieniec/controlled-plag-check/results.xlsx
-[obfuscation/funshuffle/funshuffle_batch.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/funshuffle/funshuffle_batch.py
-[obfuscation/inject/inject_3_steps.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/inject/inject_3_steps.py
-[fake_function_names.txt]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/data/fake_function_names.txt
-[fake_var_names.txt]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/data/fake_var_names.txt
-[create_fake_var_names.py]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/helpers/create_fake_var_names.py
-[obfuscation/rename/rename_funs.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/rename_funs.py
-[charts/create_chart.py]: https://github.com/wbieniec/controlled-plag-check/charts/create_chart.py
+[preprocess.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/preprocess.py 
+[main.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/main.py 
+[config.json]: https://github.com/wbieniec/controlled-plag-check/blob/main/config.json
+[results.xlsx]: https://github.com/wbieniec/controlled-plag-check/blob/main/results.xlsx
+[obfuscation/funshuffle/funshuffle_batch.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/obfuscation/funshuffle/funshuffle_batch.py
+[obfuscation/inject/inject_3_steps.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/obfuscation/inject/inject_3_steps.py
+[fake_function_names.txt]:  https://github.com/wbieniec/controlled-plag-check/blob/main/obfuscation/rename/data/fake_function_names.txt
+[fake_var_names.txt]:  https://github.com/wbieniec/controlled-plag-check/blob/main/obfuscation/rename/data/fake_var_names.txt
+[create_fake_var_names.py]:  https://github.com/wbieniec/controlled-plag-check/blob/main/obfuscation/rename/helpers/create_fake_var_names.py
+[obfuscation/rename/rename_funs.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/obfuscation/rename/rename_funs.py
+[charts/create_chart.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/charts/create_chart.py
 
