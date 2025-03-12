@@ -151,7 +151,8 @@ python create_chart.py chart_all_lcs.json
 An important section of the file is to point to an EXCEL sheet with (see [results.xslx] file) similarity data.
 The result is a generated graph in a PDF file.  
 Results are presented as follows.
-![All obfuscations LCS with different K Len](https://github.com/wbieniec/controlled-plag-check/charts/lcs_all.png)
+
+![All obfuscations LCS with different K Len](https://github.com/wbieniec/controlled-plag-check/blob/main/charts/lcs_all.png)
 
 
 [preprocess.py]: https://github.com/wbieniec/controlled-plag-check/blob/main/preprocess.py 
