@@ -1,0 +1,166 @@
+{
+    "_comment": " Config  file in JSON format",
+    "constants": {
+        "_comment": " Section 1 - constants",
+        "NO_MIXERS": 1024,
+        "MIXERS_PATH": "./mixers1024.txt",
+        "KEYWORDS_FILE": "./keywords.txt",
+        "MIN_FILE_LEN": 20,
+        "ACCEPTABLE_FILE_EXTENSIONS": [
+            ".py"
+        ],
+        "FORBIDDEN_FILE_NAME_PREFIXES": [
+            "ast_demo",
+            "ipynb2py",
+            "minhash_plagiarism_detector",
+            "filter",
+            "merge_filtered"
+        ],
+        "FORBIDDEN_FILE_NAME_FACTORS": [
+            "checkpoint",
+            "moss"
+        ]
+    },
+    "tests": {
+        "names": [
+            {
+                "name": "rename",
+                "dir": "./tests/test1_rename",
+                "must_be": [
+                    "A.py"
+                ]
+            },
+            {
+                "name": "inject1",
+                "dir": "./tests/test2_inject1",
+                "must_be": [
+                    "A.py"
+                ]
+            },
+            {
+                "name": "inject2",
+                "dir": "./tests/test3_inject2",
+                "must_be": [
+                    "A.py"
+                ]
+            },
+            {
+                "name": "inject3",
+                "dir": "./tests/test4_inject3",
+                "must_be": [
+                    "A.py"
+                ]
+            },
+            {
+                "name": "funshuffle",
+                "dir": "./tests/test5_funshuffle",
+                "must_be": [
+                    "A.py"
+                ]
+            },
+            {
+                "name": "all",
+                "dir": "./tests/test6_all",
+                "must_be": [
+                    "A.py"
+                ]
+            },
+            {
+                "name": "inject123",
+                "dir": "./tests/test7_inject123",
+                "must_be": [
+                    "A.py"
+                ]
+            }
+        ],
+        "parsers": [
+            "NO",
+            "OURS",
+            "TS"
+        ],
+        "methods": [
+            {
+                "name": "LCS",
+                "params": {
+                    "TUPLE_LEN": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                }
+            },
+            {
+                "name": "MinHash",
+                "params": {
+                    "M": [
+                        128
+                    ],
+                    "K": [
+                        4,
+                        8,
+                        12,
+                        16
+                    ]
+                }
+            },
+            {
+                "name": "FracMinHash",
+                "params": {
+                    "M": [
+                        128
+                    ],
+                    "K": [
+                        4,
+                        8,
+                        12,
+                        16
+                    ],
+                    "FRACMINHASH_THR": [
+                        1537228672809129200,
+                        768614336404564600,
+                        384307168202282300
+                    ]
+                }
+            },
+            {
+                "name": "Weighted_FracMinHash",
+                "params": {
+                    "M": [
+                        128
+                    ],
+                    "K": [
+                        4,
+                        8,
+                        12,
+                        16
+                    ],
+                    "FRACMINHASH_THR": [
+                        1537228672809129200,
+                        768614336404564600,
+                        384307168202282300
+                    ]
+                }
+            },
+            {
+                "name": "LogWeighted_FracMinHash",
+                "params": {
+                    "M": [
+                        128
+                    ],
+                    "K": [
+                        4,
+                        8,
+                        12,
+                        16
+                    ],
+                    "FRACMINHASH_THR": [
+                        1537228672809129200,
+                        768614336404564600,
+                        384307168202282300
+                    ]
+                }
+            }
+        ]
+    }
+}
