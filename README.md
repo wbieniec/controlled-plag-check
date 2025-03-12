@@ -1,13 +1,36 @@
-# Overview
+# Controlled Plagiarism Checker
+## Overview
 
-controlled-plag-check  is a Python tool for pairwise Python code similarity measurement, as well as Python code obfuscation. The code obfuscation capabilities allow for a controlled experiment.
-# Technologies:
+**controlled-plag-check**  is a Python tool for pairwise Python code similarity measurement, as well as Python code obfuscation. The code obfuscation capabilities allow for a controlled experiment.
+## Technologies:
 ### Source code tokenization
-### LCS
-### MinHash
-### FracMinHash
+Tokenization process, which is assign a symbol to each language construct utilizes following technologies
 
-# Setup
+- ```tokenize``` Python Library  
+- ```ast``` Python library that is an implementation of Abstract Syntax Tree  
+- [Tree Sitter](https://github.com/tree-sitter/py-tree-sitter)
+
+### LCS
+Longest common subsequence (LCS) is a classic string similarity measure.
+For two strings A and B, of length n and m, respectively, LCS(A, B) is any sequence of character pairs (Ai1 , Bj1 ), (Ai2 , Bj2 ), ... , (Aik , Bjk) such that i1 < i2 < ... < ik,
+j1 < j2 < ... < jk, Aih = Bjh for all 1 ⩽ h ⩽ k, and k is maximized.
+
+For example, LCS(LOVES, SOLVE) is OVE, but also LVE; both are of length 3 and there is no longer common subsequence.
+
+In this application we work on token q-grams, rather than characters or single tokens.
+
+### MinHash
+Minhash is an efficient algorithm for calculating the similarity between two sets. It approximates the Jaccard similarity.
+
+The basic idea is to calculate the hash value of each element in the set through a hash function, and then use the minimum hash value as the signature of the document (_sketch_). 
+The similarity of sketches represents the similarity of documents.
+
+### FracMinHash
+A weakness of MinHash is its inability to provide reliable estimation of set similarity when the sets forming a considered pair differ in their size.
+FracMinHash solves the problem: it uses a single hash function and for each input it builds the set of hash values for its items such that they are below a
+specified threshold.
+
+## Setup
 Clone the repo 
 ```sh
 git clone https://github.com/wbieniec/controlled-plag-check.git
@@ -17,33 +40,45 @@ Update missing Python dependencies
 pip install -r requirements.txt
 ```
 ## Tools in detail
-The program measures the similarity of files containing Python code using a selected text algorithm. Each test is a directory with files. Each combination of two files is examined, except that you can mark a group of file names that must be included in the test.
-The parameters of the test or tests are defined in the configuration file (see example config.json).
-# preprocess.py and main.py
-The program is executed in two phases.
-The purpose of preprocess.py is reading and parsing files for pairwise similarity check.
-   Parameters are given in config*.json file
-   These include:
+The program measures the similarity of files containing Python code using a selected text algorithm. Each test is a directory with files.
+
+Each combination of two files is examined, except that you can mark a group of file names that must be included in the test.
+
+The parameters of the test or tests are defined in the configuration file (see example [config.json] ).
+
+These include:
+
    - name of the test(s) and directory with source files
      (you may provide some exclusions in filenames)
    - used parsers
    - used similarity measures with parameters.
    
-   For each test the script generates *.dict file containing preprocessed files.
-    
-   Exemplary use:
-   python preprocess.py config_test8.json
-   
-   The output is:
-   rename2.dict
 
-The purpose of main.py is measuring the similarity pairwise.
+# preprocess.py and main.py
+The program is executed in two phases.
+The purpose of [preprocess.py] is reading and parsing files for pairwise similarity check.
+   
+For each test the script generates *.dict file containing preprocessed files.
+    
+Exemplary use:
+```sh
+python preprocess.py config_test8.json
+```   
+
+The output is:
+
+```rename2.dict```
+
+The purpose of [main.py] is measuring the similarity pairwise.
+
 Preprocessing is required before use (presence of *.dict file)
    
 Parameters are given in config*.json file same as for preprocessing.py. 
     
-   Exemplary use:
-   python main.py config_test8.json
+Exemplary use:
+```sh
+python main.py config_test8.json
+```
    
 The output is generated for each pair, each parser, each measure.
 Result is printed in the form of columns, in order:
@@ -55,14 +90,21 @@ Result is printed in the form of columns, in order:
    - measure name
    - measure parameters
    - calculation time
-Exemplary results have been collected in Excel workbook results.xlsx.
+
+Exemplary results have been collected in Excel workbook [results.xlsx].
+
 # Other tools
-# obfuscation/funshuffle/funshuffle_batch.py
-The script generates several files with decreasing degrees of reordering as output. Shuffling the functions is smart; the cost of order change depends on the length of  the function.
+## Fun Shuffle obfuscation tool
+The script [obfuscation/funshuffle/funshuffle_batch.py] generates several files with decreasing degrees of reordering as output.
+
+Shuffling the functions is smart; the cost of order change depends on the length of  the function.
+
 Number of files depends on count of functions in the source.
-Exemplary use (having A.py source code):
+Exemplary use (having ```A.py``` source code):
+```sh
 python funshuffle_batch.py A.py
-the output is a set of files A_fs(0.0).py ... A_fs(0.9).py
+```
+the output is a set of files ```A_fs(0.0).py``` ... ```A_fs(0.9).py```
 where fs(0.0) means maximum mixing and fs(0.9) minimum.
 
 # Inject 3 steps
@@ -109,8 +151,13 @@ python create_chart.py chart_all_lcs.json
 An important section of the file is to point to an EXCEL sheet with (see [results.xslx] file) similarity data.
 The result is a generated graph in a PDF file.  
 Results are presented as follows.
+![All obfuscations LCS with different K Len](https://github.com/wbieniec/controlled-plag-check/charts/lcs_all.png)
 
+
+[preprocess.py]: https://github.com/wbieniec/controlled-plag-check/preprocess.py 
+[config.json]: https://github.com/wbieniec/controlled-plag-check/config.json
 [results.xlsx]: https://github.com/wbieniec/controlled-plag-check/results.xlsx
+[obfuscation/funshuffle/funshuffle_batch.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/funshuffle/funshuffle_batch.py
 [obfuscation/inject/inject_3_steps.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/inject/inject_3_steps.py
 [fake_function_names.txt]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/data/fake_function_names.txt
 [fake_var_names.txt]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/data/fake_var_names.txt
