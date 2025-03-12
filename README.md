@@ -65,52 +65,56 @@ python funshuffle_batch.py A.py
 the output is a set of files A_fs(0.0).py ... A_fs(0.9).py
 where fs(0.0) means maximum mixing and fs(0.9) minimum.
 
-# obfuscation/inject/inject_3_steps.py
-The purpose of this script is to obfuscate the source code by inserting meaningless lines of code that make it difficult to identify plagiarism.
+# Inject 3 steps
+The purpose of [obfuscation/inject/inject_3_steps.py] script is to obfuscate the source code by inserting meaningless lines of code that make it difficult to identify plagiarism.
 The additional instructions do not change the way the script works.   
 The "injection" is done in three steps:
- a) insert additional randomly generated loops or condition statements
-      between assignment statements;
- b) prepend instructions like assignments, for-loops) with an artificial
-      if-condition which always evaluates as true
- c) look up for logical expressions in existing if-statement conditions
-      and extend these conditions through identity transformation.  
+
+  a. insert additional randomly generated loops or condition statements between assignment statements;  
+  b. prepend instructions like assignments, for-loops) with an artificial if-condition which always evaluates as true;  
+  c. look up for logical expressions in existing if-statement conditions and extend these conditions through identity transformation.  
    
 The number of insertions is parameterized.
 The program searches for the number of possible places that can be modified and randomly selects a change based on the parameters passed.
 The next values correspond to the number of changes of a), b) and c) type respectively.
- The parameter values should be in the range 0-1, the lower the value, whereas 0 means maximum inject density.
-Exemplary use:
-python inject_3_steps.py "A.py" 0.25 0.25 0.25
-   
-the output is a file A_inj(0.25,0.25,0.25).py   
+The parameter values should be in the range 0-1, the lower the value, whereas 0 means maximum inject density.
 
-# [obfuscation/rename/rename_funs.py]
+Exemplary use:
+```sh
+python inject_3_steps.py "A.py" 0.25 0.25 0.25
+```
+the output is a file `A_inj(0.25,0.25,0.25).py`   
+
+# Rename Funs
                                                                      
-"Rename Funs" is a part of "Controlled Plag Check" project
-The purpose of    "Rename Funs" is to rename some or all of the  identifiers in the source code, making it harder for a human  to identify plagiarism.
-The identifier names are taken from  a dictionaries (fake_function_names.txt and fake_var_names.txt) that you can create yourself or generate using create_fake_var_names.py.
+The purpose of [obfuscation/rename/rename_funs.py] is to rename some or all of the  identifiers in the source code, making it harder for a human  to identify plagiarism.
+The identifier names are taken from  a dictionaries ([fake_function_names.txt] and [fake_var_names.txt]) that you can create yourself or generate using [create_fake_var_names.py].
 The modified source code remains correct and produces identical results.
-The program identifies all places that can be changed  and generates output files with varying degrees of modification,
-where 0 in the name means all names have been changed
-and 1 means no changes.
+The program identifies all places that can be changed  and generates output files with varying degrees of modification, where 0 in the name means all names have been changed and 1 means no changes.
 
    Exemplary use:
-   python rename_funs.py A.py out_dir 5
-   
-   The output is generated to out_dir (script will create it).
-   The script generates 5 files A_ren(0.000).py ... A_ren(0.800).py
-   where the first one is fully renamed, and the last one
-   is little changed.
+```sh   
+python rename_funs.py A.py out_dir 5
+```
+The output is generated to out_dir (script will create it).
+The script generates 5 files `A_ren(0.000).py` ... `A_ren(0.800).py` where the first one is fully renamed, and the last one is little changed.
 
 # Create Chart
-The purpose of "Create Chart"  [charts/create_chart.py] is to generate a graph using Matplotlib presenting file similarity calculated using any software.
-The script parameter is a configuration file in JSON format. For example
-Python create_chart.py chart_all_lcs.json
-An important section of the file is to point to an EXCEL sheet with (see results.xslx file) similarity data.
+The purpose of [charts/create_chart.py] is to generate a graph using Matplotlib presenting file similarity calculated using any software.
+The script parameter is a configuration file in JSON format.
+For example
+```sh
+python create_chart.py chart_all_lcs.json
+```
+An important section of the file is to point to an EXCEL sheet with (see [results.xslx] file) similarity data.
 The result is a generated graph in a PDF file.  
 Results are presented as follows.
 
-[obfuscation/rename/rename_funs.py] https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/rename_funs.py
-[charts/create_chart.py] https://github.com/wbieniec/controlled-plag-check/charts/create_chart.py
+[results.xlsx]: https://github.com/wbieniec/controlled-plag-check/results.xlsx
+[obfuscation/inject/inject_3_steps.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/inject/inject_3_steps.py
+[fake_function_names.txt]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/data/fake_function_names.txt
+[fake_var_names.txt]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/data/fake_var_names.txt
+[create_fake_var_names.py]:  https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/helpers/create_fake_var_names.py
+[obfuscation/rename/rename_funs.py]: https://github.com/wbieniec/controlled-plag-check/obfuscation/rename/rename_funs.py
+[charts/create_chart.py]: https://github.com/wbieniec/controlled-plag-check/charts/create_chart.py
 
