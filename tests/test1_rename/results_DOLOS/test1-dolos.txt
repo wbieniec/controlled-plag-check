@@ -1,0 +1,7 @@
+A.py	C.py	2%	49
+A.py	B.py	28%	57
+A.py	A_ren(0.000).py	100%	61
+A.py	A_ren(0.200).py	100%	61
+A.py	A_ren(0.400).py	100%	61
+A.py	A_ren(0.600).py	100%	61
+A.py	A_ren(0.800).py	100%	61
