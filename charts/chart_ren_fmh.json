@@ -1,0 +1,41 @@
+{
+    "chart_title": "rename obfuscations FracMinHash",
+    "fig_filename": "fmh_ren.pdf",
+    "data_sources": [
+        { "filename": "../results.xlsx", "sheetname": "ours" },
+        { "filename": "../results.xlsx", "sheetname": "competitors" },
+        { "filename": "../results.xlsx", "sheetname": "toy" }        
+    ],
+    "x_col": "File 2",
+    "x_label": "A.py versus other files",
+    "y_col": "Similarity",
+    "y_label": "Similarity",
+    "first_rows": ["C.py", "B.py"],
+
+    "series": [
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 4, 'FRACMINHASH_THR': 384307168202282300}" },
+            "src_index": 0,
+            "title": "FracMinhash(128,4)",
+            "style": "r^"
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 8, 'FRACMINHASH_THR': 384307168202282300}" },
+            "src_index": 0,
+            "title": "FracMinhash(128,8)",
+            "style": "gs"
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 12, 'FRACMINHASH_THR': 384307168202282300}" },
+            "src_index": 0,
+            "title": "FracMinhash(128,12)",
+            "style": "k."
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 16, 'FRACMINHASH_THR': 384307168202282300}" },
+            "src_index": 0,
+            "title": "FracMinhash(128,16)",
+            "style": "b*"
+        }
+    ]
+}

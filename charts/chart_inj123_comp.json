@@ -1,0 +1,41 @@
+{
+    "chart_title": "Inject 123 comparison",
+    "fig_filename": "comp_inj123.pdf",
+    "data_sources": [
+        { "filename": "../results.xlsx", "sheetname": "ours" },
+        { "filename": "../results.xlsx", "sheetname": "competitors" },
+        { "filename": "../results.xlsx", "sheetname": "toy" }        
+    ],
+    "x_col": "File 2",
+    "x_label": "A.py versus other files",
+    "y_col": "Similarity",
+    "y_label": "Similarity",
+    "first_rows": ["C.py", "B.py"],
+
+    "series": [
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "inject123", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 4, 'FRACMINHASH_THR': 384307168202282300}" },
+            "src_index": 0,
+            "title": "FracMinhash(128,4)",
+            "style": "r^"
+        },
+        {
+            "row_filter": { "Soft": "dolos", "Obfuscation": "inject123"},
+            "src_index": 1,
+            "title": "Dolos",
+            "style": "gs"
+        },
+        {
+            "row_filter": {  "Soft": "jplag", "Obfuscation": "inject123"},
+            "src_index": 1,
+            "title": "JPlag",
+            "style": "k."
+        },
+        {
+            "row_filter": {  "Soft": "moss", "Obfuscation": "inject123"},
+            "src_index": 1,
+            "title": "Moss",
+            "style": "b*"
+        }
+    ]
+}

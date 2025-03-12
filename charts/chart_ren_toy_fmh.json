@@ -1,0 +1,37 @@
+{
+    "chart_title": "Rename LCS with different K Len",
+    "fig_filename": "chart_ren_toy_fmh.pdf",
+    "data_sources": [
+        { "filename": "../results.xlsx", "sheetname": "ours" },
+        { "filename": "../results.xlsx", "sheetname": "competitors" },
+        { "filename": "../results.xlsx", "sheetname": "toy" }        
+    ],
+    "x_col": "File 2",
+    "x_label": "A.py versus other files",
+    "y_col": "Similarity",
+    "y_label": "Similarity",
+    "first_rows": ["Y.py"],
+
+    "series": [
+        
+                {
+            "row_filter": { "Parser": "NO", "Obfuscation": "rename2", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 4, 'FRACMINHASH_THR': 6148914691236517205}" },
+            "src_index": 2,
+            "title": "no",
+            "style": "k^"
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename2", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 4, 'FRACMINHASH_THR': 6148914691236517205}" },
+            "src_index": 2,
+            "title": "partial",
+            "style": "bs"
+        },
+        {
+            "row_filter": { "Parser": "TS", "Obfuscation": "rename2", "Method": "FracMinHash", "Parameters": "{'M': 128, 'K': 4, 'FRACMINHASH_THR': 6148914691236517205}" },
+            "src_index": 2,
+            "title": "full",
+            "style": "g."
+        }
+        
+    ]
+}

@@ -1,0 +1,44 @@
+# negative
+# 
+if {x} == {x+1}:
+  print("error")
+
+
+# positive
+# x : x > 0
+for _ in range({x}):
+  pass
+
+
+# positive
+# x, y : x < y
+if {x} < {y}:
+  pass
+
+
+# negative
+# x, y : x >= y
+if {x} < {y}:
+  pass
+
+
+# negative
+#
+for _ in range(0):
+  pass
+  pass
+
+
+# negative
+# x, y, z : x < y and z < 0
+for _ in range({x}, {y}, {z}):
+  pass
+  pass
+
+
+# negative
+# x, y : x > y
+for _ in range({x}, {y}):
+  pass
+  pass
+  pass

@@ -1,0 +1,42 @@
+{
+    "chart_title": "Rename comparison",
+    "fig_filename": "comp_ren3_toy.pdf",
+    "data_sources": [
+        { "filename": "../results.xlsx", "sheetname": "ours" },
+        { "filename": "../results.xlsx", "sheetname": "competitors" },
+        { "filename": "../results.xlsx", "sheetname": "toy" }        
+    ],
+    "x_col": "File 2",
+    "x_label": "A.py versus other files",
+    "y_col": "Similarity",
+    "y_label": "Similarity",
+    "first_rows": ["C.py", "B.py"],
+
+    "series": [
+        {
+            "row_filter": { "Parser": "NO", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 3}" },
+            "src_index": 0,
+            "title": "LCS(K=3), no anonymization",
+            "style": "k*"
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 3}" },
+            "src_index": 0,
+            "title": "LCS(K=3), identifier anonymization",
+            "style": "r<"
+        },
+        {
+            "row_filter": { "Parser": "TS", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 3}" },
+            "src_index": 0,
+            "title": "LCS(K=3), full anonymization",
+            "style": "b^"
+        },        
+        
+        {
+            "row_filter": { "Soft": "dolos", "Obfuscation": "rename"},
+            "src_index": 1,
+            "title": "Dolos",
+            "style": "gs"
+        }        
+    ]
+}

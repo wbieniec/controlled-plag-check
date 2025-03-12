@@ -1,0 +1,41 @@
+{
+    "chart_title": "Funshuffle comparison",
+    "fig_filename": "chart_fs_comp.pdf",
+    "data_sources": [
+        { "filename": "../results.xlsx", "sheetname": "ours" },
+        { "filename": "../results.xlsx", "sheetname": "competitors" },
+        { "filename": "../results.xlsx", "sheetname": "toy" }        
+    ],
+    "x_col": "File 2",
+    "x_label": "A.py versus other files",
+    "y_col": "Similarity",
+    "y_label": "Similarity",
+    "first_rows": ["C.py", "B.py"],
+
+    "series": [
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "funshuffle", "Method": "MinHash", "Parameters": "{'M': 128, 'K': 4}" },
+            "src_index": 0,
+            "title": "Minhash(128,4)",
+            "style": "r^"
+        },
+        {
+            "row_filter": { "Soft": "dolos", "Obfuscation": "funshuffle"},
+            "src_index": 1,
+            "title": "Dolos",
+            "style": "gs"
+        },
+        {
+            "row_filter": {  "Soft": "jplag", "Obfuscation": "funshuffle"},
+            "src_index": 1,
+            "title": "JPlag",
+            "style": "k."
+        },
+        {
+            "row_filter": {  "Soft": "moss", "Obfuscation": "funshuffle"},
+            "src_index": 1,
+            "title": "Moss",
+            "style": "b*"
+        }
+    ]
+}

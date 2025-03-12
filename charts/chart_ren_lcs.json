@@ -1,0 +1,41 @@
+{
+    "chart_title": "Rename LCS with different K Len",
+    "fig_filename": "lcs_ren.pdf",
+    "data_sources": [
+        { "filename": "../results.xlsx", "sheetname": "ours" },
+        { "filename": "../results.xlsx", "sheetname": "competitors" },
+        { "filename": "../results.xlsx", "sheetname": "toy" }        
+    ],
+    "x_col": "File 2",
+    "x_label": "A.py versus other files",
+    "y_col": "Similarity",
+    "y_label": "Similarity",
+    "first_rows": ["C.py", "B.py"],
+
+    "series": [
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 1}" },
+            "src_index": 0,
+            "title": "LCS 1",
+            "style": "r^"
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 2}" },
+            "src_index": 0,
+            "title": "LCS 2",
+            "style": "gs"
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 3}" },
+            "src_index": 0,
+            "title": "LCS 3",
+            "style": "k."
+        },
+        {
+            "row_filter": { "Parser": "OURS", "Obfuscation": "rename", "Method": "LCS", "Parameters": "{'TUPLE_LEN': 4}" },
+            "src_index": 0,
+            "title": "LCS 4",
+            "style": "b*"
+        }
+    ]
+}
