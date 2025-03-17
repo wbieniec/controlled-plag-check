@@ -4,7 +4,7 @@
 **controlled-plag-check**  is a Python tool for pairwise Python code similarity measurement, as well as Python code obfuscation. The code obfuscation capabilities allow for a controlled experiment.
 ## Technologies:
 ### Source code tokenization
-Tokenization process, which is assign a symbol to each language construct utilizes following technologies
+Tokenization process, which is to assign a symbol to each language unit (token), utilizes the following technologies:
 
 - ```tokenize``` Python Library  
 - ```ast``` Python library that is an implementation of Abstract Syntax Tree  
@@ -12,8 +12,7 @@ Tokenization process, which is assign a symbol to each language construct utiliz
 
 ### LCS
 Longest common subsequence (LCS) is a classic string similarity measure.
-For two strings A and B, of length n and m, respectively, LCS(A, B) is any sequence of character pairs (Ai1 , Bj1 ), (Ai2 , Bj2 ), ... , (Aik , Bjk) such that i1 < i2 < ... < ik,
-j1 < j2 < ... < jk, Aih = Bjh for all 1 ⩽ h ⩽ k, and k is maximized.
+For two strings A and B, LCS(A, B) is any sequence of matching symbol pairs taken from both strings such that their positions in A and B are ascending (but not necessarily consecutive), and the length of this sequence is maximized.
 
 For example, LCS(LOVES, SOLVE) is OVE, but also LVE; both are of length 3 and there is no longer common subsequence.
 
@@ -22,27 +21,26 @@ In this application we work on token q-grams, rather than characters or single t
 ### MinHash
 Minhash is an efficient algorithm for calculating the similarity between two sets. It approximates the Jaccard similarity.
 
-The basic idea is to calculate the hash value of each element in the set through a hash function, and then use the minimum hash value as the signature of the document (_sketch_). 
-The similarity of sketches represents the similarity of documents.
+The basic idea is to calculate, for each element of the set, M hash values obtained with M different (independent) hash functions, and the vector of M minima of those values over the whole set form asignature of the document (_sketch_). 
+The element-wise similarity of the sketches approximates the similarity of compared documents.
 
 ### FracMinHash
-A weakness of MinHash is its inability to provide reliable estimation of set similarity when the sets forming a considered pair differ in their size.
-FracMinHash solves the problem: it uses a single hash function and for each input it builds the set of hash values for its items such that they are below a
-specified threshold.
+A weakness of MinHash is its inability to provide reliable estimation of set similarity when the sets forming a considered pair differ significantly in their size.
+FracMinHash solves the problem: it uses a single hash function and for each input it builds the set of hash values for its items such that they are below a specified threshold.
 
 ## Setup
-Clone the repo 
+Clone the repo:
 ```sh
 git clone https://github.com/wbieniec/controlled-plag-check.git
 ```
-Update missing Python dependencies
+Update missing Python dependencies:
 ```sh
 pip install -r requirements.txt
 ```
 ## Tools in detail
-The program measures the similarity of files containing Python code using a selected text algorithm. Each test is a directory with files.
+The program measures the similarity of files with Python code using a selected text algorithm. Each test is represented with a directory with files.
 
-Each combination of two files is examined, except that you can mark a group of file names that must be included in the test.
+Each pair of two files is examined, except that you can mark a group of file names that must be included in the test.
 
 The parameters of the test or tests are defined in the configuration file (see example [config.json] ).
 
@@ -91,7 +89,7 @@ Result is printed in the form of columns, in order:
    - measure parameters
    - calculation time
 
-Exemplary results have been collected in Excel workbook [results.xlsx].
+Exemplary results have been collected in an Excel workbook [results.xlsx].
 
 # Other tools
 ## Fun Shuffle obfuscation tool
