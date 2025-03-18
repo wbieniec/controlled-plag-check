@@ -6,9 +6,9 @@
 ### Source code tokenization
 Tokenization process, which is to assign a symbol to each language unit (token), utilizes the following technologies:
 
-- ```tokenize``` Python Library  
-- ```ast``` Python library that is an implementation of Abstract Syntax Tree  
-- [Tree Sitter](https://github.com/tree-sitter/py-tree-sitter)
+- ```tokenize``` Python Library, 
+- ```ast``` Python library that is an implementation of Abstract Syntax Tree, 
+- [Tree Sitter](https://github.com/tree-sitter/py-tree-sitter). 
 
 ### LCS
 Longest common subsequence (LCS) is a classic string similarity measure.
@@ -16,13 +16,13 @@ For two strings A and B, LCS(A, B) is any sequence of matching symbol pairs take
 
 For example, LCS(LOVES, SOLVE) is OVE, but also LVE; both are of length 3 and there is no longer common subsequence.
 
-In this application we work on token q-grams, rather than characters or single tokens.
+In this application we work on token _q_-grams, rather than characters or single tokens.
 
 ### MinHash
 Minhash is an efficient algorithm for calculating the similarity between two sets. It approximates the Jaccard similarity.
 
-The basic idea is to calculate, for each element of the set, M hash values obtained with M different (independent) hash functions, and the vector of M minima of those values over the whole set form asignature of the document (_sketch_). 
-The element-wise similarity of the sketches approximates the similarity of compared documents.
+The basic idea is to calculate, for each element of the set, _M_ hash values obtained with _M_ different (independent) hash functions, and the vector of _M_ minima of those values over the whole set form a signature of the document (_sketch_). 
+The element-wise similarity of the sketches stands for the similarity of compared documents.
 
 ### FracMinHash
 A weakness of MinHash is its inability to provide reliable estimation of set similarity when the sets forming a considered pair differ significantly in their size.
@@ -40,22 +40,23 @@ pip install -r requirements.txt
 ## Tools in detail
 The program measures the similarity of files with Python code using a selected text algorithm. Each test is represented with a directory with files.
 
-Each pair of two files is examined, except that you can mark a group of file names that must be included in the test.
+Each pair of two files is examined, except that you can mark a group of file names that must be included in the test. 
+For example, if the file collection is {A, B, C, D, E} and the group of required files is {B, E}, then the set of considered file pairs is: {BA, BC, BD, BE, EA, EC, ED}. 
+Note all our algorithms are symmetrical, hence if, e.g., the pair BC is selected, then it makes no sense to repeat the test for the pair CB.
 
-The parameters of the test or tests are defined in the configuration file (see example [config.json] ).
+The parameters of the test or tests are defined in the configuration file (see example [config.json]).
 
 These include:
 
-   - name of the test(s) and directory with source files
-     (you may provide some exclusions in filenames)
-   - used parsers
-   - used similarity measures with parameters.
+   - name of the test(s) and directory with source files (you may provide some exclusions in filenames), 
+   - used parsers, 
+   - used similarity measures with parameters. 
    
 
 # preprocess.py and main.py
 The program is executed in two phases.
-The purpose of [preprocess.py] is reading and parsing files for pairwise similarity check.
-   
+
+1. The purpose of [preprocess.py] is reading and parsing files for pairwise similarity check.
 For each test the script generates *.dict file containing preprocessed files.
     
 Exemplary use:
@@ -67,7 +68,7 @@ The output is:
 
 ```rename2.dict```
 
-The purpose of [main.py] is measuring the similarity pairwise.
+2. The purpose of [main.py] is measuring the similarity pairwise.
 
 Preprocessing is required before use (presence of *.dict file)
    
@@ -79,15 +80,15 @@ python main.py config_test8.json
 ```
    
 The output is generated for each pair, each parser, each measure.
-Result is printed in the form of columns, in order:
-   - parser
-   - test name
-   - file 1
-   - file 2
-   - similarity
-   - measure name
-   - measure parameters
-   - calculation time
+The result is printed in the form of columns, in order:
+   - parser, 
+   - test name, 
+   - file 1, 
+   - file 2, 
+   - similarity, 
+   - measure name, 
+   - measure parameters, 
+   - calculation time. 
 
 Exemplary results have been collected in an Excel workbook [results.xlsx].
 
@@ -95,7 +96,7 @@ Exemplary results have been collected in an Excel workbook [results.xlsx].
 ## Fun Shuffle obfuscation tool
 The script [obfuscation/funshuffle/funshuffle_batch.py] generates several files with decreasing degrees of reordering as output.
 
-Shuffling the functions is smart; the cost of order change depends on the length of  the function.
+Shuffling the functions is smart; the cost of order change depends on the length of the function.
 
 Number of files depends on count of functions in the source.
 Exemplary use (having ```A.py``` source code):
@@ -142,7 +143,7 @@ The script generates 5 files `A_ren(0.000).py` ... `A_ren(0.800).py` where the f
 # Create Chart
 The purpose of [charts/create_chart.py] is to generate a graph using Matplotlib presenting file similarity calculated using any software.
 The script parameter is a configuration file in JSON format.
-For example
+For example:
 ```sh
 python create_chart.py chart_all_lcs.json
 ```
